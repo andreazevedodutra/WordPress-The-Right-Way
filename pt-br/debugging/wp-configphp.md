@@ -1,62 +1,64 @@
-# Constants of `wp-config.php`
+# Constantes de `wp-config.php`
 
-Currently there are several PHP constants on the `wp-config.php` that will allow you to improve you WordPress code and help you debug.
+Atualmente, existem várias constantes do PHP no `wp-config.php` que lhe permitirá melhorar o seu código WordPress e ajudá-lo a depurar.
 
 ---
 
 ### `WP_DEBUG`
-This is an Option included in [WordPress version 2.3.1](http://codex.wordpress.org/Version_2.3.1).
+Esta é uma opção incluída na [WordPress version 2.3.1](http://codex.wordpress.org/Version_2.3.1).
 
-By default this will be set to `false` which will prevent warnings and errors from been shown, but **all WordPress developers should have this option active**.
+Por padrão, este será definido para `false` o que impedirá avisos e erros de ser mostrado, mas **todos os desenvolvedores do WordPress devem ter essa opção ativa**.
 
-#### Activates the Logs
+#### Ativa os logs
 ```php
 define( 'WP_DEBUG', true );
 ```
 
-#### Deactivates the Logs
+#### Desativa os Logs
 ```php
 define( 'WP_DEBUG', false );
 ```
-_Check that the values must be **bool** instead of **string**_
+_Check que os valores devem ser **bool** ao invés de **string**_
 
-A minor patch later the on [Wordpress version 2.3.2](http://codex.wordpress.org/Version_2.3.2), the system allowed us to have a more granular control over the Database error logs.
+Um patch menor depois, o on [Wordpress version 2.3.2](http://codex.wordpress.org/Version_2.3.2), o sistema nos permitiu ter um controle mais acertivo sobre os logs de erros de banco de dados.
 
-Later on in the version 2.5, WordPress raised the [error reporting](http://www.php.net/error-reporting) level to E_ALL, that will allow to see logs for Notices and Deprecation messages.
+Mais tarde, na versão 2.5, WordPress levantou a [error reporting](http://www.php.net/error-reporting) a nível E_ALL, que permitirá ver os logs para os avisos e mensagens de descontinuação.
 
 ###### _Notes:_
-If you have this option turned on, you might encounter problems with AJAX requests, this problem is related to Notices been printed on the output of the AJAX response, that **will break XML and JSON**.
+
+Se você tiver essa opção ativada, você poderá encontrar problemas com solicitações de AJAX, este problema está relacionado com Avisos sido impresso na saída da resposta AJAX, que **
+vai quebrar o XML e JSON**.
 
 #### `WP_DEBUG_LOG`
-When you use `WP_DEBUG` set to `true` you have access to this constant, and this will allow you to log your notices and warnings to a file.
+Quando você usa `WP_DEBUG` definido como `true` você tem acesso a essa constante, e isso vai permitir que você registrar seus avisos e advertências para um arquivo.
 
 #### `WP_DEBUG_DISPLAY`
-When you use `WP_DEBUG` set to `true` you have access to this constant, with it you can choose to display or not the notices and warnings on the screen.
+Quando você usa `WP_DEBUG` definido como `true` você tem acesso a essa constante, com ele você pode optar por exibir ou não os avisos e avisos na tela.
 
 ###### Note:
-If these variables don't produce the output you are expecting check out the [Codex Section about ways to setup your logging](http://codex.wordpress.org/Editing_wp-config.php#Configure_Error_Logging).
+Se essas variáveis não produzir o resultado que você está esperando verificar o [Codex Section about ways to setup your logging](http://codex.wordpress.org/Editing_wp-config.php#Configure_Error_Logging).
 
 ---
 
 ### `SCRIPT_DEBUG`
-When you have a WordPress plugin or theme that is including the Minified version of your CSS or JavaScript files by default you are doing it wrong!
+Quando você tem um plugin para WordPress ou tema que está incluindo a versão minified do seu arquivos CSS ou JavaScript, por padrão, você está fazendo errado!
 
-Following the WordPress idea of creating a file for development and its minified version is very good and you should have both files in your plugin, and based on this variable you will enqueue one or the other.
+Seguindo a idéia WordPress de criar um arquivo para o desenvolvimento e sua versão minified é muito boa e você deve ter ambos os arquivos no seu plug-in, e com base nesta variável que vai enfileirar um ou o outro.
 
-By default this constant will be set to `false`, and if you want to be able to debug CSS or JavaScript files from WordPress you should turn it to `true`.
+Por padrão esta constante será definida para `false`, e se você quer ser capaz de depurar arquivos CSS ou JavaScript a partir do WordPress você deve transformá-lo para `true`.
 
-#### Activates the Logs
+#### Ativa os logs
 ```php
 define( 'SCRIPT_DEBUG', true );
 ```
-_Check that the values must be **bool** instead of **string**_
+_Check que os valores devem ser **bool** ao invés de **string**_
 
-WordPress default files `wp-includes` and `wp-admin` will be set to its development version if set to `true`.
+Arquivos padrão do WordPress `wp-includes` e `wp-admin` será definido para a sua versão de desenvolvimento se definido como `true`.
 
 ### `CONCATENATE_SCRIPTS`
-On your WordPress administration you will have all your JavaScript files concatenated in to one single request based on the dependencies and priority of enqueue.
+Em sua administração WordPress você vai ter todos os seus arquivos JavaScript concatenados para um único pedido com base nas dependências e prioridade de enfileiramento.
 
-To remove this feature all around you can set this constant to `false`.
+Para remover esse recurso pode definir esta constante para `false`.
 ```php
 define( 'CONCATENATE_SCRIPTS', false );
 ```
@@ -64,10 +66,10 @@ define( 'CONCATENATE_SCRIPTS', false );
 ---
 
 ### `SAVEQUERIES`
-When you are dealing with the database you might want to save your queries so that you can debug what is happening inside of your plugin or theme.
+Quando você está lidando com o banco de dados você pode querer salvar suas consultas para que você possa depurar o que está acontecendo dentro do seu plugin ou tema.
 
 **Make `$wpdb` save Queries**
 ```php
 define( 'SAVEQUERIES', true );
 ```
-_**Note:** this will slowdown your WordPress_
+_**Note:** isso irá desacelerar seu WordPress_
